@@ -8,6 +8,12 @@ const Todo = () => {
         {id: 'task-1', title: 'Купить молоко', isDone: false},
         {id: 'task-2', title: 'Купить хлеб', isDone: true},
         ]
+
+    const deleteAllTasks = () => {
+        console.log("Удаляем все задачи!");
+    }
+
+
     return (
         <div className="todo">
             <h1 className="todo__title">To Do List</h1>
@@ -16,6 +22,7 @@ const Todo = () => {
             <TodoInfo
                 total={tasks.length}
                 done={tasks.filter(({ isDone }) => isDone).length}
+                onDeleteAllButtonClick={deleteAllTasks}
             />
             <TodoList tasks={tasks} />
         </div>
