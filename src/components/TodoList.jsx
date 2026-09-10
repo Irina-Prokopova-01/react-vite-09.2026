@@ -1,6 +1,7 @@
 import TodoItem from "./TodoItem.jsx";
 
 const TodoList = () => {
+
     const hasTasks = true
     if (!hasTasks) {
         return (
@@ -9,7 +10,18 @@ const TodoList = () => {
     }
     return (
         <ul className="todo__list">
-            <TodoItem />
+            <TodoItem
+                className='todo__item'
+                title="Купить молоко"
+                isDone={false}
+                id='task-1'
+            />
+            <TodoItem
+                className='todo__item'
+                title="Купить хлеб"
+                isDone
+                id='task-2'
+            />
             <li className="todo__item todo-item">
                 <input
                     className="todo-item__checkbox"
