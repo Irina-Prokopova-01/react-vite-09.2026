@@ -14,12 +14,10 @@ const TodoList = (props) => {
     }
     return (
         <ul className="todo__list">
-            {tasks.map(({id, title, isDone}) => (
+            {tasks.map((task) => (
                 <TodoItem
-                    className="todo__item"
-                    id={id}
-                    title={title}
-                    isDone={isDone}
+                    key={task.id}
+                    {...task}
                 />
             ))}
         </ul>
