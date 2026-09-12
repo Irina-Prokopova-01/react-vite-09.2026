@@ -2,12 +2,15 @@ import AddTaskForm from "./AddTaskForm.jsx";
 import SearchTaskForm from "./SearchTaskForm.jsx";
 import TodoInfo from "./TodoInfo.jsx";
 import TodoList from "./TodoList.jsx";
+import {useState} from "react";
 
 const Todo = () => {
-    const tasks = [
+    const [tasks, setTasks] = useState([
         {id: 'task-1', title: 'Купить молоко', isDone: false},
         {id: 'task-2', title: 'Купить хлеб', isDone: true},
-        ]
+    ]);
+
+    const [newTaskTitle, setNewTaskTitle] = useState('')
 
     const deleteAllTasks = () => {
         console.log("Удаляем все задачи!");
@@ -26,6 +29,17 @@ const Todo = () => {
     }
 
     const addTask = () => {
+        if (newTaskTitle.trim().length > 0) {
+            const newTask = {
+                id: crypto?.randomUUID() ?? Date.now().toString(),
+                title: newTaskTitle,
+                isDone: false,
+            }
+
+            setTasks( [...tasks, newTask]);
+
+            setNewTaskTitle('')
+        }
         console.log('Задача добавлена!')
     }
 
@@ -35,6 +49,8 @@ const Todo = () => {
             <h1 className="todo__title">To Do List</h1>
             <AddTaskForm
                 addTask={addTask}
+                newTaskTitle={newTaskTitle}
+                setNewTaskTitle={setNewTaskTitle}
             />
             <SearchTaskForm
                 onSearchInput={filterTask}
