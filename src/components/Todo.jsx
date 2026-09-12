@@ -14,7 +14,7 @@ const Todo = () => {
 
     const deleteAllTasks = () => {
         console.log("Удаляем все задачи!");
-        const isConfirmed = confirm('Are you sure you want to delete this task?')
+        const isConfirmed = confirm('Are you sure you want to delete all task?')
 
         if (isConfirmed) {
             setTasks([])
