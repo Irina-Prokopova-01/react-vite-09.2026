@@ -2,7 +2,9 @@ import Field from "./Field.jsx";
 
 const SearchTaskForm = (props) => {
     const {
-        onSearchInput,
+        // onSearchInput,
+        setSearchQuery,
+        searchQuery,
     } = props
     return (
         <form className="todo__form"
@@ -13,7 +15,8 @@ const SearchTaskForm = (props) => {
                 label="Search task"
                 id="search-task"
                 type="search"
-                onInput={(event) => onSearchInput(event.target.value)}
+                value={searchQuery}
+                onInput={(event) => setSearchQuery(event.target.value)}
             />
         </form>
     )
