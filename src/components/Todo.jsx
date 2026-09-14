@@ -2,7 +2,7 @@ import AddTaskForm from "./AddTaskForm.jsx";
 import SearchTaskForm from "./SearchTaskForm.jsx";
 import TodoInfo from "./TodoInfo.jsx";
 import TodoList from "./TodoList.jsx";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 
 const Todo = () => {
     const [tasks, setTasks] = useState(() => {
@@ -18,7 +18,9 @@ const Todo = () => {
         ]
     })
 
-    const [newTaskTitle, setNewTaskTitle] = useState('')
+    // const [newTaskTitle, setNewTaskTitle] = useState('')
+    const newTaskInputRef = useRef(null);
+    // console.log(newTaskInputRef)
 
     const [searchQuery, setSearchQuery] = useState('')
 
@@ -55,6 +57,7 @@ const Todo = () => {
     // }
 
     const addTask = () => {
+        const newTaskTitle = newTaskInputRef.current.value
         if (newTaskTitle.trim().length > 0) {
             const newTask = {
                 id: crypto?.randomUUID() ?? Date.now().toString(),
@@ -63,11 +66,12 @@ const Todo = () => {
             }
 
             setTasks( [...tasks, newTask]);
-
-            setNewTaskTitle('')
+        //setNewTaskTitle('')
+            newTaskInputRef.current.value = ''
             setSearchQuery('')
         }
         // console.log('Задача добавлена!')
+        // console.log('newTask', newTaskInputRef);
     }
 
     useEffect(() => {
@@ -86,8 +90,9 @@ const Todo = () => {
             <h1 className="todo__title">To Do List</h1>
             <AddTaskForm
                 addTask={addTask}
-                newTaskTitle={newTaskTitle}
-                setNewTaskTitle={setNewTaskTitle}
+                newTaskInputRef={newTaskInputRef}
+                // newTaskTitle={newTaskTitle}
+                // setNewTaskTitle={setNewTaskTitle}
             />
             <SearchTaskForm
                 // onSearchInput={filterTask}
