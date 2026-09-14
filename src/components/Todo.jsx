@@ -122,6 +122,7 @@ const Todo = () => {
                 deleteAllTasks,
                 deleteTask,
                 toggleTaskComplete,
+                filteredTasks
             }}
         >
             <div className="todo">
