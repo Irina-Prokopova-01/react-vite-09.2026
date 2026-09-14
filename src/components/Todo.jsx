@@ -18,7 +18,7 @@ const Todo = () => {
         ]
     })
 
-    // const [newTaskTitle, setNewTaskTitle] = useState('')
+    const [newTaskTitle, setNewTaskTitle] = useState('')
     const newTaskInputRef = useRef(null);
     // console.log(newTaskInputRef)
 
@@ -57,7 +57,7 @@ const Todo = () => {
     // }
 
     const addTask = () => {
-        const newTaskTitle = newTaskInputRef.current.value
+        // const newTaskTitle = newTaskInputRef.current.value
         if (newTaskTitle.trim().length > 0) {
             const newTask = {
                 id: crypto?.randomUUID() ?? Date.now().toString(),
@@ -66,9 +66,10 @@ const Todo = () => {
             }
 
             setTasks( [...tasks, newTask]);
-        //setNewTaskTitle('')
-            newTaskInputRef.current.value = ''
+            setNewTaskTitle('')
+            // newTaskInputRef.current.value = ''
             setSearchQuery('')
+            newTaskInputRef.current.focus()
         }
         // console.log('Задача добавлена!')
         // console.log('newTask', newTaskInputRef);
@@ -84,6 +85,11 @@ const Todo = () => {
     ? tasks.filter(({title}) => title.toLowerCase().includes(searchQuery))
         : null
 
+    useEffect(() => {
+        newTaskInputRef.current.focus()
+
+    }, [])
+
 
     return (
         <div className="todo">
@@ -91,8 +97,8 @@ const Todo = () => {
             <AddTaskForm
                 addTask={addTask}
                 newTaskInputRef={newTaskInputRef}
-                // newTaskTitle={newTaskTitle}
-                // setNewTaskTitle={setNewTaskTitle}
+                newTaskTitle={newTaskTitle}
+                setNewTaskTitle={setNewTaskTitle}
             />
             <SearchTaskForm
                 // onSearchInput={filterTask}
