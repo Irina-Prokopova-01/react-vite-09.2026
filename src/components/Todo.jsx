@@ -65,6 +65,7 @@ const Todo = () => {
             setTasks( [...tasks, newTask]);
 
             setNewTaskTitle('')
+            setSearchQuery('')
         }
         // console.log('Задача добавлена!')
     }
