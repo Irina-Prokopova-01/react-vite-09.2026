@@ -3,7 +3,7 @@ import SearchTaskForm from "./SearchTaskForm.jsx";
 import TodoInfo from "./TodoInfo.jsx";
 import TodoList from "./TodoList.jsx";
 import Button from "./Button.jsx";
-import {useEffect, useState, useRef, useCallback} from "react";
+import {useEffect, useState, useRef, useCallback, useMemo} from "react";
 
 const Todo = () => {
     console.log('Todo')
@@ -38,24 +38,27 @@ const Todo = () => {
         }
     }, [])
 
-    const deleteTask = (taskId) => {
+    const deleteTask = useCallback(
+        (taskId) => {
         // console.log(`Удаляем задачу с id: ${taskId}!`);
         setTasks(
             tasks.filter((task) => task.id !== taskId)
         )
-    }
+    },[tasks])
 
-    const toggleTaskComplete = (taskId, isDone) => {
-        // console.log(`Задача ${taskId} ${isDone ? 'выполнена' : 'не выполнена'}`);
-        setTasks(
-            tasks.map((task) => {
-                if (task.id === taskId) {
-                    return {...task, isDone}
-                }
-                return task
-            })
-        )
-    }
+    const toggleTaskComplete = useCallback(
+        (taskId, isDone) => {
+            // console.log(`Задача ${taskId} ${isDone ? 'выполнена' : 'не выполнена'}`);
+            setTasks(
+                tasks.map((task) => {
+                    if (task.id === taskId) {
+                        return {...task, isDone}
+                    }
+                    return task
+                })
+            )
+
+        },[tasks])
 
     // const filterTask = (query) => {
     //     console.log(`Поиск: ${query}`);
@@ -85,10 +88,12 @@ const Todo = () => {
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }, [tasks])
 
-    const clearSearchQuery = searchQuery.trim().toLowerCase()
-    const filteredTasks = clearSearchQuery.length > 0
-    ? tasks.filter(({title}) => title.toLowerCase().includes(searchQuery))
-        : null
+    const filteredTasks = useMemo(() => {
+        const clearSearchQuery = searchQuery.trim().toLowerCase()
+        return clearSearchQuery.length > 0
+            ? tasks.filter(({title}) => title.toLowerCase().includes(searchQuery))
+            : null
+    }, [searchQuery, tasks])
 
     useEffect(() => {
         newTaskInputRef.current.focus()
