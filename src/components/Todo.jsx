@@ -3,9 +3,10 @@ import SearchTaskForm from "./SearchTaskForm.jsx";
 import TodoInfo from "./TodoInfo.jsx";
 import TodoList from "./TodoList.jsx";
 import Button from "./Button.jsx";
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState, useRef, useCallback} from "react";
 
 const Todo = () => {
+    console.log('Todo')
     const [tasks, setTasks] = useState(() => {
         const savedTasks = localStorage.getItem("tasks")
 
@@ -28,14 +29,14 @@ const Todo = () => {
     const firstIncompleteTaskRef = useRef(null);
     const firstIncompleteTaskId = tasks.find(({isDone}) => !isDone)?.id
 
-    const deleteAllTasks = () => {
+    const deleteAllTasks = useCallback(() => {
         console.log("Удаляем все задачи!");
         const isConfirmed = confirm('Are you sure you want to delete all task?')
 
         if (isConfirmed) {
             setTasks([])
         }
-    }
+    }, [])
 
     const deleteTask = (taskId) => {
         // console.log(`Удаляем задачу с id: ${taskId}!`);
@@ -100,6 +101,10 @@ const Todo = () => {
     //     renderCount.current ++
     //     console.log(`Компонент Todo отрендерился ${renderCount.current} раз(а)`)
     // })
+
+    // const memoizedFn = useCallback(() => {
+    //
+    // }, []);
 
 
     return (
