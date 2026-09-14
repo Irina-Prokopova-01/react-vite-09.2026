@@ -95,6 +95,10 @@ const Todo = () => {
             : null
     }, [searchQuery, tasks])
 
+    const doneTasks = useMemo(() => {
+        return tasks.filter(({ isDone }) => isDone).length
+    }, [tasks])
+
     useEffect(() => {
         newTaskInputRef.current.focus()
 
@@ -128,7 +132,7 @@ const Todo = () => {
             />
             <TodoInfo
                 total={tasks.length}
-                done={tasks.filter(({ isDone }) => isDone).length}
+                done={doneTasks}
                 onDeleteAllButtonClick={deleteAllTasks}
             />
             <Button onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({behavior: 'smooth'})}>
