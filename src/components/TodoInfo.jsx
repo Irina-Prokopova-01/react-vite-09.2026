@@ -1,7 +1,7 @@
 import {memo} from "react";
 
 const TodoInfo = (props) => {
-    console.log('TodoInfo')
+    // console.log('TodoInfo')
     const {
         total,
         done,

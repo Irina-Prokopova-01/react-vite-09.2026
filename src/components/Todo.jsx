@@ -6,7 +6,7 @@ import Button from "./Button.jsx";
 import {useEffect, useState, useRef, useCallback, useMemo} from "react";
 
 const Todo = () => {
-    console.log('Todo')
+    // console.log('Todo')
     const [tasks, setTasks] = useState(() => {
         const savedTasks = localStorage.getItem("tasks")
 
@@ -64,24 +64,24 @@ const Todo = () => {
     //     console.log(`Поиск: ${query}`);
     // }
 
-    const addTask = () => {
-        // const newTaskTitle = newTaskInputRef.current.value
-        if (newTaskTitle.trim().length > 0) {
-            const newTask = {
-                id: crypto?.randomUUID() ?? Date.now().toString(),
-                title: newTaskTitle,
-                isDone: false,
-            }
+    const addTask = useCallback(() => {
+            // const newTaskTitle = newTaskInputRef.current.value
+            if (newTaskTitle.trim().length > 0) {
+                const newTask = {
+                    id: crypto?.randomUUID() ?? Date.now().toString(),
+                    title: newTaskTitle,
+                    isDone: false,
+                }
 
-            setTasks( [...tasks, newTask]);
-            setNewTaskTitle('')
-            // newTaskInputRef.current.value = ''
-            setSearchQuery('')
-            newTaskInputRef.current.focus()
-        }
-        // console.log('Задача добавлена!')
-        // console.log('newTask', newTaskInputRef);
-    }
+                setTasks((prevTasks) => [...prevTasks, newTask]);
+                setNewTaskTitle('')
+                // newTaskInputRef.current.value = ''
+                setSearchQuery('')
+                newTaskInputRef.current.focus()
+            }
+            // console.log('Задача добавлена!')
+            // console.log('newTask', newTaskInputRef);
+    }, [newTaskTitle])
 
     useEffect(() => {
         console.log('Сохраняем данные в хранилище, т.к. изменился tasks:', tasks)

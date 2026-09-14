@@ -1,6 +1,8 @@
+import {memo} from "react";
+
 const TodoItem = (props) => {
-    console.log('TodoItem')
-    console.log(props)
+    // console.log('TodoItem')
+    // console.log(props)
 
     const {
         className = '',
@@ -56,4 +58,4 @@ const TodoItem = (props) => {
     )
 }
 
-export default TodoItem
+export default memo(TodoItem);
