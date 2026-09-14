@@ -2,13 +2,21 @@ import AddTaskForm from "./AddTaskForm.jsx";
 import SearchTaskForm from "./SearchTaskForm.jsx";
 import TodoInfo from "./TodoInfo.jsx";
 import TodoList from "./TodoList.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const Todo = () => {
-    const [tasks, setTasks] = useState([
-        {id: 'task-1', title: 'Купить молоко', isDone: false},
-        {id: 'task-2', title: 'Купить хлеб', isDone: true},
-    ]);
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem("tasks")
+
+        if (savedTasks) {
+            return JSON.parse(savedTasks)
+        }
+
+        return [
+            {id: 'task-1', title: 'Купить молоко', isDone: false},
+            {id: 'task-2', title: 'Купить хлеб', isDone: true},
+        ]
+    })
 
     const [newTaskTitle, setNewTaskTitle] = useState('')
 
@@ -58,6 +66,11 @@ const Todo = () => {
         }
         // console.log('Задача добавлена!')
     }
+
+    useEffect(() => {
+        console.log('Сохраняем данные в хранилище, т.к. изменился tasks:', tasks)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }, [tasks])
 
 
     return (
