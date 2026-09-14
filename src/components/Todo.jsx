@@ -94,6 +94,13 @@ const Todo = () => {
 
     }, [])
 
+    // const renderCount = useRef(0)
+    //
+    // useEffect(() => {
+    //     renderCount.current ++
+    //     console.log(`Компонент Todo отрендерился ${renderCount.current} раз(а)`)
+    // })
+
 
     return (
         <div className="todo">
