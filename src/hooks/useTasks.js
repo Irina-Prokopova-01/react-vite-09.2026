@@ -20,9 +20,6 @@ const useTasks = () => {
     const newTaskInputRef = useRef(null);
     // console.log(newTaskInputRef)
 
-    const firstIncompleteTaskRef = useRef(null);
-    const firstIncompleteTaskId = tasks.find(({isDone}) => !isDone)?.id
-
     const deleteAllTasks = useCallback(() => {
         console.log("Удаляем все задачи!");
         const isConfirmed = confirm('Are you sure you want to delete all task?')
@@ -89,8 +86,6 @@ const useTasks = () => {
 
     return {
             tasks,
-            firstIncompleteTaskRef,
-            firstIncompleteTaskId,
             deleteAllTasks,
             deleteTask,
             toggleTaskComplete,
