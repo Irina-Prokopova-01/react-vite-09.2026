@@ -1,18 +1,17 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import useTasksLocalStorage from "./useTasksLocalStorage.js";
 
 const useTasks = () => {
-    const [tasks, setTasks] = useState(() => {
-        const savedTasks = localStorage.getItem("tasks")
+    const {
+        savedTasks,
+        saveTasks,
+    } = useTasksLocalStorage(
 
-        if (savedTasks) {
-            return JSON.parse(savedTasks)
-        }
-
-        return [
-            {id: 'task-1', title: 'Купить молоко', isDone: false},
-            {id: 'task-2', title: 'Купить хлеб', isDone: true},
-        ]
-    })
+    )
+    const [tasks, setTasks] = useState(savedTasks ?? [
+        {id: 'task-1', title: 'Купить молоко', isDone: false},
+        {id: 'task-2', title: 'Купить хлеб', isDone: true},
+    ])
 
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
@@ -68,8 +67,7 @@ const useTasks = () => {
     }, [newTaskTitle])
 
     useEffect(() => {
-        console.log('Сохраняем данные в хранилище, т.к. изменился tasks:', tasks)
-        localStorage.setItem('tasks', JSON.stringify(tasks))
+        saveTasks(tasks)
     }, [tasks])
 
     const filteredTasks = useMemo(() => {
