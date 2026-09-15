@@ -1,5 +1,5 @@
 import {memo, useContext} from "react";
-import {TasksContext} from "../context/tasksContext.js";
+import {TasksContext} from "../context/tasksContext.jsx";
 
 const TodoItem = (props) => {
     // console.log('TodoItem')

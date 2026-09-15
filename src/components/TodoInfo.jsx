@@ -1,6 +1,6 @@
 import {memo, useMemo} from "react";
 import {useContext} from "react";
-import {TasksContext} from "../context/tasksContext.js";
+import {TasksContext} from "../context/tasksContext.jsx";
 
 const TodoInfo = () => {
     // console.log('TodoInfo')
