@@ -1,9 +1,11 @@
+import {TasksProvider} from "../context/tasksContext.jsx";
+import Todo from "../components/Todo.jsx";
+
 const TasksPage = () => {
     return (
-        <div>
-            <h1>Список задач</h1>
-            {/* Пока просто заглушка */}
-        </div>
+        <TasksProvider>
+            <Todo/>
+        </TasksProvider>
     )
 }
 
