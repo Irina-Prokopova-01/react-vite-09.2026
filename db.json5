@@ -1,1 +1,14 @@
-{tasks:[{title:'купить дом',isDone:false,id:'AevfesN9uJs'},{title:'купить машину',isDone:true,id:'123'}],$schema:'./node_modules/json-server/schema.json'}
+{
+  tasks: [
+    {
+      title: 'купить дом',
+      isDone: false,
+      id: 'AevfesN9uJs'
+    },
+    {
+      title: 'купить машину',
+      isDone: true,
+      id: '123'
+    }
+  ],
+}

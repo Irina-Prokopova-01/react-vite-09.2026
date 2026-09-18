@@ -5,7 +5,7 @@ import TasksPage from "./pages/TasksPage.jsx";
 const App = () => {
     const router = {
         '/': TasksPage,
-        '/tasks/123': TaskPage,
+        '/tasks/:id': TaskPage,
         '*': () => <div>404 Page not found</div>,
     }
 
