@@ -2,7 +2,7 @@ const RouterLink = props => {
     const {
         to,
         children,
-        ...rest,
+        ...rest
     } = props
 
     const handleClick = (event) => {
@@ -17,3 +17,5 @@ const RouterLink = props => {
         </a>
     )
 }
+
+export default RouterLink
