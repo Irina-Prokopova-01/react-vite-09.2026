@@ -1,18 +1,19 @@
-import Field from "./Field.jsx";
-import {TasksContext} from "../context/tasksContext.jsx";
+import Field from "../Field/Field.jsx";
+import {TasksContext} from "../../context/tasksContext.jsx";
 import {useContext} from "react";
 
-const SearchTaskForm = () => {
+const SearchTaskForm = (props) => {
+    const { styles } = props;
     const {
         setSearchQuery,
         searchQuery,
     } = useContext(TasksContext)
     return (
-        <form className="todo__form"
+        <form className={styles.form}
               onSubmit={(e) => e.preventDefault()}
         >
             <Field
-                className="todo__field"
+                className={styles.field}
                 label="Search task"
                 id="search-task"
                 type="search"

@@ -1,5 +1,5 @@
 import {TasksProvider} from "../context/tasksContext.jsx";
-import Todo from "../components/Todo.jsx";
+import Todo from "../components/Todo/Todo.jsx";
 import {useEffect, useState} from "react";
 import tasksAPI from "../api/tasksAPI.js";
 
