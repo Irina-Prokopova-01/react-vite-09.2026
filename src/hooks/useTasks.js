@@ -7,6 +7,7 @@ const useTasks = () => {
     const [newTaskTitle, setNewTaskTitle] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
     const [disappearingTaskId, setDisappearingTaskId] = useState(null)
+    const [appearingTaskId, setAppearingTaskId] = useState(null)
 
     const newTaskInputRef = useRef(null);
     // console.log(newTaskInputRef)
@@ -68,6 +69,11 @@ const useTasks = () => {
                     setNewTaskTitle('')
                     setSearchQuery('')
                     newTaskInputRef.current.focus()
+                    setAppearingTaskId(addedTask.id)
+                    setTimeout(()=> {
+                        setAppearingTaskId(null)
+
+                    }, 400)
                 })
 
     }, [])
@@ -100,7 +106,8 @@ const useTasks = () => {
             searchQuery,
             newTaskInputRef,
             setSearchQuery,
-            disappearingTaskId
+            disappearingTaskId,
+            appearingTaskId
 }
 
 }
