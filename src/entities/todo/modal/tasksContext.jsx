@@ -1,0 +1,62 @@
+import {
+    createContext,
+} from 'react'
+import useTasks from "./useTasks.js";
+import useIncompleteTaskScroll from "./useIncompleteTask.Scroll.js";
+
+export const TasksContext = createContext({})
+
+export const TasksProvider = (props) => {
+    const {
+        children
+    } = props
+
+    const {
+        tasks,
+        deleteAllTasks,
+        deleteTask,
+        toggleTaskComplete,
+        filteredTasks,
+
+        addTask,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        newTaskInputRef,
+        setSearchQuery,
+        disappearingTaskId,
+        appearingTaskId,
+
+    } = useTasks()
+
+    const {
+        firstIncompleteTaskRef,
+        firstIncompleteTaskId,
+    } = useIncompleteTaskScroll(tasks)
+
+
+    return (
+        <TasksContext.Provider
+            value={{
+                tasks,
+                firstIncompleteTaskRef,
+                firstIncompleteTaskId,
+                deleteAllTasks,
+                deleteTask,
+                toggleTaskComplete,
+                filteredTasks,
+
+                addTask,
+                newTaskTitle,
+                setNewTaskTitle,
+                searchQuery,
+                newTaskInputRef,
+                setSearchQuery,
+                disappearingTaskId,
+                appearingTaskId,
+            }}
+        >
+            {children}
+        </TasksContext.Provider>
+    )
+}
