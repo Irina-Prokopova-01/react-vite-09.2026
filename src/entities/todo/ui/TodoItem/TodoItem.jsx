@@ -2,6 +2,7 @@ import {memo, useContext} from "react";
 import {TasksContext} from "@/entities/todo";
 import RouterLink from "@/shared/ui/RouterLink";
 import styles from "./TodoItem.module.scss";
+import {highlightCaseInsensitive} from "@/shared/utils/highlight.js";
 
 const TodoItem = (props) => {
 
@@ -22,10 +23,7 @@ const TodoItem = (props) => {
         searchQuery
     } = useContext(TasksContext)
 
-    const hilightedTitle = searchQuery.length > 0 ? title.replaceAll(
-        new RegExp(searchQuery, 'gi'),
-        `<mark>$&</mark>`
-    ): title
+    const hilightedTitle = highlightCaseInsensitive(title, searchQuery)
 
 
     return (
