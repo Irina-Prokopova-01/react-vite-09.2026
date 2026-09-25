@@ -19,7 +19,13 @@ const TodoItem = (props) => {
         toggleTaskComplete,
         disappearingTaskId,
         appearingTaskId,
+        searchQuery
     } = useContext(TasksContext)
+
+    const hilightedTitle = searchQuery.length > 0 ? title.replaceAll(
+        new RegExp(searchQuery, 'gi'),
+        `<mark>$&</mark>`
+    ): title
 
 
     return (
@@ -48,7 +54,7 @@ const TodoItem = (props) => {
             </label>
             <RouterLink to={`/tasks/${id}`} aria-label="Task detail page">
                 {/*{title}*/}
-                <span dangerouslySetInnerHTML={{ __html: title }} />
+                <span dangerouslySetInnerHTML={{ __html: hilightedTitle }} />
             </RouterLink>
             <button
                 className={styles.deleteButton}
