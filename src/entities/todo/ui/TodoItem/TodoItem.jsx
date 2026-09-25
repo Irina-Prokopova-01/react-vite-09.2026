@@ -47,7 +47,8 @@ const TodoItem = (props) => {
                 {title}
             </label>
             <RouterLink to={`/tasks/${id}`} aria-label="Task detail page">
-                {title}
+                {/*{title}*/}
+                <span dangerouslySetInnerHTML={{ __html: title }} />
             </RouterLink>
             <button
                 className={styles.deleteButton}
