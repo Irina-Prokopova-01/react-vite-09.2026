@@ -19,8 +19,6 @@ export const TasksProvider = (props) => {
         filteredTasks,
 
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
         searchQuery,
         newTaskInputRef,
         setSearchQuery,
@@ -42,8 +40,6 @@ export const TasksProvider = (props) => {
         filteredTasks,
 
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
         searchQuery,
         newTaskInputRef,
         setSearchQuery,
@@ -59,8 +55,6 @@ export const TasksProvider = (props) => {
         filteredTasks,
 
         addTask,
-        newTaskTitle,
-        setNewTaskTitle,
         searchQuery,
         newTaskInputRef,
         setSearchQuery,
